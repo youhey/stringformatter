@@ -1,5 +1,5 @@
 {
-    "name": "youhey/stringformatter",
+    "name": "youhey/c-sharp-ish-string-formatter",
     "description": "C# style string formatting (without optional format string)",
     "license": "MIT",
     "authors": [
