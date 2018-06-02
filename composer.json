@@ -2,7 +2,6 @@
     "name": "youhey/stringformatter",
     "description": "C# style string formatting (without optional format string)",
     "license": "MIT",
-    "version": "0.1.0",
     "authors": [
         {
             "name": "IKEDA Youhei",
