@@ -23,6 +23,7 @@ class FormatterTest extends TestCase
             (new Formatter('{name}, {age}, {city}'))->compile(['name' => 'hoge', 'age' => '42', 'city' => 'tokyo'])
         );
     }
+
     /**
      * @test
      *
@@ -55,15 +56,31 @@ class FormatterTest extends TestCase
      * @test
      *
      * @throws \Youhey\StringFormatter\Exceptions\MissingArgumentException
+     * @throws \Youhey\StringFormatter\Exceptions\CompileErrorException
+     *
+     */
+    public function escapePlaceholder()
+    {
+        $this->assertSame(
+            'world Hello {p}',
+            (new Formatter('{1} {0} {{p}}'))->compile('Hello', 'world')
+        );
+        $this->assertSame(
+            'world Hello {{p}}',
+            (new Formatter('{1} {0} {{{p}}}'))->compile('Hello', 'world')
+        );
+    }
+
+    /**
+     * @test
+     *
+     * @throws \Youhey\StringFormatter\Exceptions\MissingArgumentException
      *
      * @expectedException \Youhey\StringFormatter\Exceptions\CompileErrorException
      */
     public function missingNamedPlaceholder()
     {
-        $this->assertSame(
-            'Hello "" !',
-            (new Formatter('{message} "{name}" !'))->compile(['message' => 'Hello'])
-        );
+        (new Formatter('{message} "{name}" !'))->compile(['message' => 'Hello']);
     }
 
     /**
@@ -75,9 +92,6 @@ class FormatterTest extends TestCase
      */
     public function missingIndexedPlaceholder()
     {
-        $this->assertSame(
-            'world Hello!',
-            (new Formatter('{1} {0}!'))->compile('Hello')
-        );
+        (new Formatter('{1} {0}!'))->compile('Hello');
     }
 }

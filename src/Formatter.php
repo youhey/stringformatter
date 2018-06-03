@@ -36,6 +36,7 @@ class Formatter implements FormatterInterface
         $params = ((count($args) === 1) && is_array($args[0])) ? $this->named($args[0]) : $this->indexed(...$args);
 
         $compiler = new Compilers\NamedCompiler($this->format, $params, ...[
+            new Compilers\Patterns\EscapedPlaceholder($params, Compilers\NamedCompiler::REGEXP_PLACEHOLDER),
             new Compilers\Patterns\SimplePlaceholder($params),
         ]);
 
