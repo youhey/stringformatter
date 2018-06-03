@@ -7,13 +7,13 @@ C# style string formatting (without optional format string)
 simple format
 
 ```php
-use Youhey\StringFormatter\Formatter as F;
+use Youhey\StringFormatter\Formatter;
 
 // output "はじめまして 世界!"
-echo (new F("{hello} {world}!")->compile(["hello" => "はじめまして", "world" => "世界"]);
+echo (new Formatter("{hello} {world}!"))->compile(["hello" => "はじめまして", "world" => "世界"]);
 
 // output "hello world!"
-echo (new F("{0} {1}!")->compile("hello", "world");
+echo (new Formatter("{0} {1}!"))->compile("hello", "world");
 ```
 
 ## Test
